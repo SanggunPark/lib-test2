@@ -48,18 +48,19 @@ dependencies {
     androidTest()
 
     testImplementation("io.kotest.extensions:kotest-extensions-koin:1.1.0")
-    implementation("com.github.amirisback:jitpack-library-kotlin-dsl-guide:1.0.1")
 }
-repositories {
-    maven { url = uri("https://jitpack.io") }
+
+val sourcesJar by tasks.registering(Jar::class) {
+    archiveClassifier.set("sources")
+    from(android.sourceSets.getByName("main").java.srcDirs)
 }
 
 afterEvaluate {
     publishing {
         publications {
-            register<MavenPublication>("release") {
-                afterEvaluate { from(components["release"]) }
-//                artifact(tasks.getByName("sourcesJar"))
+            val release by publications.registering(MavenPublication::class) {
+                from(components["release"])
+                artifact(sourcesJar.get())
                 groupId = "com.github.SanggunPark"
                 artifactId = "test-lib2"
                 version = "1.0.6"

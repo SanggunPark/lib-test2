@@ -22,7 +22,9 @@ allprojects {
         google()
         mavenLocal()
         mavenCentral()
-        maven { url = URI("https://jitpack.io") }
+        maven {
+            setUrl("https://jitpack.io")
+        }
     }
 }
 
