@@ -51,39 +51,25 @@ dependencies {
 }
 
 group = "com.github.SanggunPark"
-version = "1.0.0"
+version = "1.0.2"
 
 afterEvaluate {
     publishing {
         publications {
             register<MavenPublication>("release") {
                 afterEvaluate { from(components["release"]) }
-                artifact(tasks.getByName("sourcesJar"))
+//                artifact(tasks.getByName("sourcesJar"))
                 groupId = "com.github.SanggunPark"
                 artifactId = "test-lib2"
-                version = "1.0.0"
+                version = "1.0.2"
+            }
 
-                // Mostly self-explanatory metadata
-                pom {
-                    name.set("Test Library")
-                    description.set("Test")
-                    url.set("https://github.com/SanggunPark/lib-test")
-                    licenses {
-                        license {
-                            name.set("The Apache License, Version 2.0")
-                            url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-                        }
-                    }
-                    developers {
-                        developer {
-                            id.set("SanggunPark")
-                            name.set("Sanggun Park")
-                            email.set("psgxxx@nm-metaworld.com")
-                        }
-                    }
-
-                }
-
+            register<MavenPublication>("debug") {
+                afterEvaluate { from(components["debug"]) }
+//                artifact(tasks.getByName("sourcesJar"))
+                groupId = "com.github.SanggunPark.debug"
+                artifactId = "test-lib2-debug"
+                version = "1.0.2"
             }
 
         }
