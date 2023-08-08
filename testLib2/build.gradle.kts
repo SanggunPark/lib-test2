@@ -58,7 +58,7 @@ afterEvaluate {
 //                artifact(tasks.getByName("sourcesJar"))
                 groupId = "com.github.SanggunPark"
                 artifactId = "test-lib2"
-                version = "1.0.2"
+                version = "1.0.3"
             }
 
             create<MavenPublication>("debug") {
@@ -66,7 +66,7 @@ afterEvaluate {
 //                artifact(tasks.getByName("sourcesJar"))
                 groupId = "com.github.SanggunPark.debug"
                 artifactId = "test-lib2-debug"
-                version = "1.0.2"
+                version = "1.0.3"
             }
 
         }
