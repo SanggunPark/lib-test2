@@ -6,6 +6,6 @@ pluginManagement {
     }
 }
 
-rootProject.name = "lib-test1"
+rootProject.name = "lib-test2"
 include(":app")
 include(":testLib2")
