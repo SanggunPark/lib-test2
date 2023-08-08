@@ -48,6 +48,7 @@ dependencies {
     androidTest()
 
     testImplementation("io.kotest.extensions:kotest-extensions-koin:1.1.0")
+    implementation("com.github.amirisback:jitpack-library-kotlin-dsl-guide:1.0.1")
 }
 repositories {
     maven { url = uri("https://jitpack.io") }
@@ -56,21 +57,21 @@ repositories {
 afterEvaluate {
     publishing {
         publications {
-            create<MavenPublication>("release") {
+            register<MavenPublication>("release") {
                 afterEvaluate { from(components["release"]) }
 //                artifact(tasks.getByName("sourcesJar"))
                 groupId = "com.github.SanggunPark"
                 artifactId = "test-lib2"
-                version = "1.0.4"
+                version = "1.0.6"
             }
 
-            create<MavenPublication>("debug") {
-                afterEvaluate { from(components["debug"]) }
-//                artifact(tasks.getByName("sourcesJar"))
-                groupId = "com.github.SanggunPark.debug"
-                artifactId = "test-lib2-debug"
-                version = "1.0.4"
-            }
+//            register<MavenPublication>("debug") {
+//                afterEvaluate { from(components["debug"]) }
+////                artifact(tasks.getByName("sourcesJar"))
+//                groupId = "com.github.SanggunPark.debug"
+//                artifactId = "test-lib2-debug"
+//                version = "1.0.4"
+//            }
 
         }
     }
