@@ -50,13 +50,10 @@ dependencies {
     testImplementation("io.kotest.extensions:kotest-extensions-koin:1.1.0")
 }
 
-group = "com.github.SanggunPark"
-version = "1.0.2"
-
 afterEvaluate {
     publishing {
         publications {
-            register<MavenPublication>("release") {
+            create<MavenPublication>("release") {
                 afterEvaluate { from(components["release"]) }
 //                artifact(tasks.getByName("sourcesJar"))
                 groupId = "com.github.SanggunPark"
@@ -64,7 +61,7 @@ afterEvaluate {
                 version = "1.0.2"
             }
 
-            register<MavenPublication>("debug") {
+            create<MavenPublication>("debug") {
                 afterEvaluate { from(components["debug"]) }
 //                artifact(tasks.getByName("sourcesJar"))
                 groupId = "com.github.SanggunPark.debug"
