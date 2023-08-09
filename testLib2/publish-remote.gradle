@@ -1,0 +1,17 @@
+apply plugin: 'maven-publish'
+
+group = "com.github.SanggunPark"
+
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+                from components.release
+
+                groupId = 'com.github.SanggunPark'
+                artifactId = 'test-lib2'
+                version = '1.0.7'
+            }
+        }
+    }
+}
