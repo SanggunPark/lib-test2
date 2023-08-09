@@ -1,10 +1,8 @@
-apply(from = "publish-remote.gradle")
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
-//    `maven-publish`
+    `maven-publish`
 }
-
 
 android {
     namespace = "com.metaverse.world.testlib2"
@@ -33,10 +31,17 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
 }
 
 dependencies {
-//    implementation ("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
+    implementation ("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     implementation(Dependencies.coreKtx)
     implementation(Dependencies.kotlinSerialization)
     implementation(group = "commons-codec", name = "commons-codec", version = "1.15")
@@ -52,26 +57,26 @@ dependencies {
     testImplementation("io.kotest.extensions:kotest-extensions-koin:1.1.0")
 }
 
-//group = "com.github.SanggunPark"
+group = "com.github.SanggunPark"
 
-//afterEvaluate {
-//    publishing {
-//        publications {
-//            register<MavenPublication>("release") {
-//                from(components["release"])
-//                groupId = "com.github.SanggunPark"
-//                artifactId = "test-lib2"
-//                version = "1.0.6"
+afterEvaluate {
+    publishing {
+        publications {
+            register<MavenPublication>("release") {
+                afterEvaluate { from(components["release"]) }
+                groupId = "com.github.SanggunPark"
+                artifactId = "lib-test2"
+                version = "1.0.8"
+            }
+
+//            register<MavenPublication>("debug") {
+//                afterEvaluate { from(components["debug"]) }
+////                artifact(tasks.getByName("sourcesJar"))
+//                groupId = "com.github.SanggunPark.debug"
+//                artifactId = "test-lib2-debug"
+//                version = "1.0.4"
 //            }
-//
-////            register<MavenPublication>("debug") {
-////                afterEvaluate { from(components["debug"]) }
-//////                artifact(tasks.getByName("sourcesJar"))
-////                groupId = "com.github.SanggunPark.debug"
-////                artifactId = "test-lib2-debug"
-////                version = "1.0.4"
-////            }
-//
-//        }
-//    }
-//}
+
+        }
+    }
+}
